@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		495F921F224116440015C858 /* Eateries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F921E224116440015C858 /* Eateries.swift */; };
+		495F9223224238B00015C858 /* UIAlertControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F9222224238B00015C858 /* UIAlertControllerFactory.swift */; };
+		495F9225224255AA0015C858 /* DependsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F9224224255AA0015C858 /* DependsFactory.swift */; };
 		499E4845223A6F0B009BCB56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E4844223A6F0B009BCB56 /* AppDelegate.swift */; };
 		499E484A223A6F0B009BCB56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499E4848223A6F0B009BCB56 /* Main.storyboard */; };
 		499E484C223A6F0D009BCB56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499E484B223A6F0D009BCB56 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		495F921E224116440015C858 /* Eateries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eateries.swift; sourceTree = "<group>"; };
+		495F9222224238B00015C858 /* UIAlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerFactory.swift; sourceTree = "<group>"; };
+		495F9224224255AA0015C858 /* DependsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependsFactory.swift; sourceTree = "<group>"; };
 		499E4841223A6F0B009BCB56 /* Eateries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eateries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499E4844223A6F0B009BCB56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499E4849223A6F0B009BCB56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,6 +54,15 @@
 				8D38CC2E722C7CE593857959 /* Pods_Eateries.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		495F9221224238890015C858 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				495F9222224238B00015C858 /* UIAlertControllerFactory.swift */,
+				495F9224224255AA0015C858 /* DependsFactory.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		499E4838223A6F0B009BCB56 = {
@@ -86,6 +99,7 @@
 				499E485C223B8F94009BCB56 /* Model */,
 				499E485D223B8FA0009BCB56 /* View */,
 				499E485E223B8FA8009BCB56 /* Controllers */,
+				495F9221224238890015C858 /* Assembly */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -281,10 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495F9225224255AA0015C858 /* DependsFactory.swift in Sources */,
 				499E4845223A6F0B009BCB56 /* AppDelegate.swift in Sources */,
 				499E4857223B8BF2009BCB56 /* EateriesTableViewController.swift in Sources */,
 				499E4859223B8EFD009BCB56 /* EateriesTableViewCell.swift in Sources */,
 				495F921F224116440015C858 /* Eateries.swift in Sources */,
+				495F9223224238B00015C858 /* UIAlertControllerFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

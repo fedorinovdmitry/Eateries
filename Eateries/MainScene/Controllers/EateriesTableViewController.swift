@@ -20,6 +20,8 @@ class EateriesTableViewController: UITableViewController {
     
     // MARK: - Public Properties
     
+    lazy var workWithUIAlertControllers = DependsFactory.sharedInstance.makeWorkWithUIAlertController(viewConroller: self)
+    
     // MARK: - Private Properties
     
     // MARK: - Init
@@ -36,6 +38,14 @@ class EateriesTableViewController: UITableViewController {
     
     // MARK: - Private methods
     
+    private func configEateryCell(cell: EateriesTableViewCell, indexPathRow: Int) -> EateriesTableViewCell {
+        let eatery = eateriesArr[indexPathRow]
+        cell.nameLabel.text = eatery.name
+        cell.thumbnailImageView.image = UIImage(named: eatery.imageName)
+        cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
+        cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
+        return cell
+    }
     // MARK: - Navigation
     
     // MARK: - Table view data source
@@ -50,14 +60,15 @@ class EateriesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: EateriesTableViewCell.identefier,
-                                          for: indexPath) as! EateriesTableViewCell // swiftlint:disable:this force_cast
-        let eatery = eateriesArr[indexPath.row]
-        cell.nameLabel.text = eatery.name
-        cell.thumbnailImageView.image = UIImage(named: eatery.imageName)
-        cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
-        cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
-        
-        return cell
+                                                 for: indexPath) as! EateriesTableViewCell // swiftlint:disable:this force_cast
+        return configEateryCell(cell: cell, indexPathRow: indexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? EateriesTableViewCell {
+            workWithUIAlertControllers.showEateryCellAlert(cell: cell,
+                                                           index: indexPath.row)
+        }
     }
 
 }
