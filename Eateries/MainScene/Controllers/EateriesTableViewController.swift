@@ -15,6 +15,7 @@ class EateriesTableViewController: UITableViewController {
     // MARK: - Constants
     
     let eateriesArr = Eatery.getAllEateries()
+    lazy var eateriesIsVisited = [Bool](repeating: false, count: eateriesArr.count)
     
     // MARK: - Outlets
     
@@ -44,6 +45,7 @@ class EateriesTableViewController: UITableViewController {
         cell.thumbnailImageView.image = UIImage(named: eatery.imageName)
         cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
         cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
+        cell.accessoryType = self.eateriesIsVisited[indexPathRow] ? .checkmark : .none
         return cell
     }
     // MARK: - Navigation
@@ -65,10 +67,10 @@ class EateriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? EateriesTableViewCell {
-            workWithUIAlertControllers.showEateryCellAlert(cell: cell,
-                                                           index: indexPath.row)
-        }
+        
+        workWithUIAlertControllers.showEateryCellAlert(index: indexPath.row)
+        // убирает выбор ячейки, подсветку неприятную
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
