@@ -11,6 +11,12 @@ import Foundation
 struct Eatery {
     let name: String
     let imageName: String
+    var isVisited: Bool = false
+    
+    init(name: String, imageName: String) {
+        self.name = name
+        self.imageName = imageName
+    }
     
     static func getAllEateries() -> [Eatery] {
         let restaurantNames = ["Ogonёk Grill&Bar",

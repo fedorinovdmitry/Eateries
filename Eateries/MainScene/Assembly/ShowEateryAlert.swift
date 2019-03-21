@@ -38,7 +38,7 @@ extension WorkWithUIAlertControllers {
         guard let tableViewController = self.viewController as? EateriesTableViewController
             else { return }
         
-        tableViewController.eateriesIsVisited[index] = !tableViewController.eateriesIsVisited[index]
+        tableViewController.eateriesArr[index].isVisited = !tableViewController.eateriesArr[index].isVisited
         tableViewController.tableView.reloadData()
     }
     
@@ -73,7 +73,7 @@ extension WorkWithUIAlertControllers {
     private func createIsVisitedAction(index: Int) -> UIAlertAction? {
         guard let eateryTVC = viewController as? EateriesTableViewController else { return nil  }
         
-        let isVistedTitle = eateryTVC.eateriesIsVisited[index] ? "Я не был здесь" : "Я был здесь"
+        let isVistedTitle = eateryTVC.eateriesArr[index].isVisited ? "Я не был здесь" : "Я был здесь"
         let isVisited = UIAlertAction(title: isVistedTitle, style: .default) { [weak self](_) in
             guard let workWithAC = self else { return }
             workWithAC.addCheckMark(index: index)

@@ -15,7 +15,6 @@ class EateriesTableViewController: UITableViewController {
     // MARK: - Constants
     
     var eateriesArr = Eatery.getAllEateries()
-    lazy var eateriesIsVisited = [Bool](repeating: false, count: eateriesArr.count)
     
     // MARK: - Outlets
     
@@ -50,7 +49,7 @@ class EateriesTableViewController: UITableViewController {
         cell.thumbnailImageView.image = UIImage(named: eatery.imageName)
         cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
         cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
-        cell.accessoryType = self.eateriesIsVisited[indexPathRow] ? .checkmark : .none
+        cell.accessoryType = self.eateriesArr[indexPathRow].isVisited ? .checkmark : .none
         return cell
     }
     // MARK: - Navigation
@@ -119,7 +118,6 @@ class EateriesTableViewController: UITableViewController {
                                           title: "Удалить") { [weak self] (_, indexPath) in
             guard let tVC = self else { return }
             let index = indexPath.row
-            tVC.eateriesIsVisited.remove(at: index)
             tVC.eateriesArr.remove(at: index)
             tVC.tableView.deleteRows(at: [indexPath], with: .fade)
         }
