@@ -14,7 +14,7 @@ class EateriesTableViewController: UITableViewController {
     
     // MARK: - Constants
     
-    let eateriesArr = Eatery.getAllEateries()
+    var eateriesArr = Eatery.getAllEateries()
     lazy var eateriesIsVisited = [Bool](repeating: false, count: eateriesArr.count)
     
     // MARK: - Outlets
@@ -31,6 +31,8 @@ class EateriesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // чтобы контент из таблицы не накладывался на статус бар
+        (UIApplication.shared.value(forKey: "statusBar") as? UIView)?.backgroundColor = view.backgroundColor
     }
     
     // MARK: - IBAction
@@ -71,6 +73,49 @@ class EateriesTableViewController: UITableViewController {
         workWithUIAlertControllers.showEateryCellAlert(index: indexPath.row)
         // убирает выбор ячейки, подсветку неприятную
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+//    override func tableView(_ tableView: UITableView,
+//                            commit editingStyle: UITableViewCell.EditingStyle,
+//                            forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let index = indexPath.row
+//            eateriesIsVisited.remove(at: index)
+//            eateriesArr.remove(at: index)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//        }
+//    }
+    override func tableView(_ tableView: UITableView,
+                            editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let share = UITableViewRowAction(style: .default,
+                                         title: "Поделиться") { [weak self] (_, indexPath) in
+            guard let tVC = self else { return }
+            let index = indexPath.row
+            let defaultText = "Я сейчас в " + tVC.eateriesArr[index].name
+            if let image = UIImage(named: tVC.eateriesArr[index].imageName) {
+                let activityController =
+                    UIActivityViewController(activityItems: [defaultText, image],
+                                             applicationActivities: nil)
+                
+                tVC.present(activityController, animated: true, completion: nil)
+                
+            }
+        }
+        
+        let delete =
+            UITableViewRowAction(style: .default,
+                                          title: "Удалить") { [weak self] (_, indexPath) in
+            guard let tVC = self else { return }
+            let index = indexPath.row
+            tVC.eateriesIsVisited.remove(at: index)
+            tVC.eateriesArr.remove(at: index)
+            tVC.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        share.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
+        delete.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        return [delete, share]
+
     }
 
 }
