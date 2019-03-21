@@ -50,8 +50,11 @@ class EateriesTableViewController: UITableViewController {
         cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
         cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
         cell.accessoryType = self.eateriesArr[indexPathRow].isVisited ? .checkmark : .none
+        cell.locationLabel.text = self.eateriesArr[indexPathRow].location.rawValue
+        cell.typeLable.text = self.eateriesArr[indexPathRow].type.rawValue
         return cell
     }
+    
     // MARK: - Navigation
     
     let segueToDetailID = "detailSegue"
@@ -69,6 +72,7 @@ class EateriesTableViewController: UITableViewController {
             detailVC.eatery = eateriesArr[index]
         }
     }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
