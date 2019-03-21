@@ -25,6 +25,9 @@ class EateriesTableViewController: UITableViewController {
     
     // MARK: - Private Properties
     
+    // сохраняем индекспаз последней выбранной ячеки для осуществления возможно перехода
+    private var lastSelectedRowIndexPath: IndexPath?
+    
     // MARK: - Init
     
     // MARK: - LifeStyle ViewController
@@ -52,6 +55,21 @@ class EateriesTableViewController: UITableViewController {
     }
     // MARK: - Navigation
     
+    let segueToDetailID = "detailSegue"
+    
+    func goToDetail() {
+        performSegue(withIdentifier: segueToDetailID, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == segueToDetailID {
+            guard let indexPath = lastSelectedRowIndexPath,
+                  let detailVC = segue.destination as? EateryDetailViewController
+                else { return }
+            let index = indexPath.row
+            detailVC.eatery = eateriesArr[index]
+        }
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,18 +91,11 @@ class EateriesTableViewController: UITableViewController {
         workWithUIAlertControllers.showEateryCellAlert(index: indexPath.row)
         // убирает выбор ячейки, подсветку неприятную
         tableView.deselectRow(at: indexPath, animated: true)
+        // убираем select ячейки но сохраняем ее index для перехода
+        lastSelectedRowIndexPath = indexPath
     }
     
-//    override func tableView(_ tableView: UITableView,
-//                            commit editingStyle: UITableViewCell.EditingStyle,
-//                            forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            let index = indexPath.row
-//            eateriesIsVisited.remove(at: index)
-//            eateriesArr.remove(at: index)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        }
-//    }
+    // методы изменения ячейки
     override func tableView(_ tableView: UITableView,
                             editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
@@ -112,8 +123,10 @@ class EateriesTableViewController: UITableViewController {
             tVC.eateriesArr.remove(at: index)
             tVC.tableView.deleteRows(at: [indexPath], with: .fade)
         }
+        
         share.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         delete.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+        
         return [delete, share]
 
     }

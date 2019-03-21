@@ -8,11 +8,6 @@ protocol WorkWithUIAlertControllersFactory {
 class WorkWithUIAlertControllers: WorkWithUIAlertControllersFactory {
     
     // MARK: - Constant
-    enum ActionType {
-        case call
-        case cancel
-        case isVisited
-    }
     
     // MARK: - Public Properties
     

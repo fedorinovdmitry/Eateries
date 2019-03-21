@@ -13,16 +13,24 @@ import UIKit
 
 extension WorkWithUIAlertControllers {
     
+    enum ActionType {
+        case call
+        case cancel
+        case isVisited
+        case goDetail
+    }
+    
     func showEateryCellAlert(index: Int) {
         
         let alertController = UIAlertController(title: nil, message: "Выберете действие", preferredStyle: .actionSheet)
         
         guard let call = getAction(type: .call, index: index),
-            let cancel = getAction(type: .cancel, index: index),
-            let isVisited = getAction(type: .isVisited, index: index)
+              let cancel = getAction(type: .cancel, index: index),
+              let isVisited = getAction(type: .isVisited, index: index),
+              let goDetail = getAction(type: .goDetail, index: index)
             else { return }
         
-        alertController.addActions(actions: [call, cancel, isVisited])
+        alertController.addActions(actions: [goDetail, call, cancel, isVisited])
         addAlertOnView(allertController: alertController)
     }
     
@@ -32,6 +40,17 @@ extension WorkWithUIAlertControllers {
         
         tableViewController.eateriesIsVisited[index] = !tableViewController.eateriesIsVisited[index]
         tableViewController.tableView.reloadData()
+    }
+    
+    private func createGoDetailAction(index: Int) -> UIAlertAction? {
+        let goDetail = UIAlertAction(title: "Подробнее о ресторане", style: .default) { [weak self] (_) in
+            guard let workWithAC = self,
+                  let eateryTVC = workWithAC.viewController as? EateriesTableViewController else { return }
+            
+            eateryTVC.goToDetail()
+           
+        }
+        return goDetail
     }
     
     private func createCallAction(index: Int) -> UIAlertAction {
@@ -44,8 +63,7 @@ extension WorkWithUIAlertControllers {
             return str
         }()
         
-        let call = UIAlertAction(title: "Позвонить: \(str)",
-        style: .default) { [weak self] (_) in
+        let call = UIAlertAction(title: "Позвонить: \(str)", style: .default) { [weak self] (_) in
             guard let workWithAC = self else { return }
             workWithAC.showAlertCallError()
         }
@@ -71,6 +89,8 @@ extension WorkWithUIAlertControllers {
             return UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
         case .isVisited:
             return createIsVisitedAction(index: index)
+        case .goDetail:
+            return createGoDetailAction(index: index)
         }
     }
 }
