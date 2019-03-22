@@ -181,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="1920.8" y="43.628185907046479"/>
         </scene>
-        <!--View Controller-->
+        <!--Rate View Controller-->
         <scene sceneID="1jQ-up-8Ik">
             <objects>
-                <viewController id="tbY-WB-txt" sceneMemberID="viewController">
+                <viewController id="tbY-WB-txt" customClass="RateViewController" customModule="Eateries" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="73H-Z6-vco">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,18 +203,56 @@
                                     <segue destination="cVt-pj-hDq" kind="unwind" unwindAction="unwindSegueWithSegue:" id="OtR-Qg-7vz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как вам у нас?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTf-fn-wFR">
+                                <rect key="frame" x="74.5" y="164" width="226" height="42.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="226" id="Ydq-mf-D5G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="35"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="xGi-nK-W2S">
+                                <rect key="frame" x="0.0" y="291" width="375" height="85"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dea-P0-zc5">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="85"/>
+                                        <state key="normal" image="bad"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAZ-3c-ZcC">
+                                        <rect key="frame" x="125" y="0.0" width="125" height="85"/>
+                                        <state key="normal" image="good"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mEW-rz-E5v">
+                                        <rect key="frame" x="250" y="0.0" width="125" height="85"/>
+                                        <state key="normal" image="brilliant"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="3Mv-4j-mj4" secondAttribute="bottom" id="2xL-Tn-670"/>
+                            <constraint firstItem="YTf-fn-wFR" firstAttribute="centerX" secondItem="3Mv-4j-mj4" secondAttribute="centerX" id="9Lm-kS-RRk"/>
                             <constraint firstItem="El0-fC-nii" firstAttribute="trailing" secondItem="e8e-5f-gSA" secondAttribute="trailing" constant="20" id="BmI-0S-grV"/>
                             <constraint firstAttribute="trailing" secondItem="3Mv-4j-mj4" secondAttribute="trailing" id="HNe-g7-uTp"/>
+                            <constraint firstItem="xGi-nK-W2S" firstAttribute="leading" secondItem="El0-fC-nii" secondAttribute="leading" id="RQv-Bi-i5O"/>
+                            <constraint firstItem="YTf-fn-wFR" firstAttribute="top" secondItem="e8e-5f-gSA" secondAttribute="bottom" constant="84" id="RlH-NO-mgm"/>
                             <constraint firstItem="e8e-5f-gSA" firstAttribute="top" secondItem="El0-fC-nii" secondAttribute="top" constant="20" id="Sk1-gN-qaE"/>
                             <constraint firstItem="3Mv-4j-mj4" firstAttribute="top" secondItem="73H-Z6-vco" secondAttribute="top" id="Vp7-4T-qMY"/>
+                            <constraint firstItem="El0-fC-nii" firstAttribute="trailing" secondItem="xGi-nK-W2S" secondAttribute="trailing" id="buM-OV-JME"/>
                             <constraint firstItem="3Mv-4j-mj4" firstAttribute="leading" secondItem="73H-Z6-vco" secondAttribute="leading" id="nIk-J9-hmZ"/>
+                            <constraint firstItem="xGi-nK-W2S" firstAttribute="top" secondItem="YTf-fn-wFR" secondAttribute="bottom" constant="84.5" id="t4n-yw-dZf"/>
+                            <constraint firstItem="xGi-nK-W2S" firstAttribute="centerX" secondItem="El0-fC-nii" secondAttribute="centerX" id="yDp-DM-VsM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="El0-fC-nii"/>
                     </view>
+                    <connections>
+                        <outlet property="ratingStackView" destination="xGi-nK-W2S" id="4ov-7m-Qpr"/>
+                        <outletCollection property="rateButtons" destination="dea-P0-zc5" collectionClass="NSMutableArray" id="3zs-NB-3jX"/>
+                        <outletCollection property="rateButtons" destination="dAZ-3c-ZcC" collectionClass="NSMutableArray" id="rX7-4e-iVh"/>
+                        <outletCollection property="rateButtons" destination="mEW-rz-E5v" collectionClass="NSMutableArray" id="2IX-SE-52s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRY-UG-nsq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cVt-pj-hDq" userLabel="Exit" sceneMemberID="exit"/>
@@ -241,7 +279,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bad" width="85" height="85"/>
         <image name="balkan" width="1280" height="1280"/>
+        <image name="brilliant" width="85" height="85"/>
         <image name="close" width="50" height="50"/>
         <image name="good" width="85" height="85"/>
         <image name="rateBackground" width="200" height="286"/>

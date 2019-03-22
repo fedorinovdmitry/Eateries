@@ -13,6 +13,7 @@
 		495F922822428D8D0015C858 /* ShowEateryAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F922722428D8D0015C858 /* ShowEateryAlert.swift */; };
 		495F922A224393A80015C858 /* EateryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F9229224393A80015C858 /* EateryDetailViewController.swift */; };
 		496067C22243DCD800E02FCE /* EateryDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496067C12243DCD800E02FCE /* EateryDetailViewCell.swift */; };
+		4960C6EA22451CE20067B5BB /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4960C6E922451CE20067B5BB /* RateViewController.swift */; };
 		499E4845223A6F0B009BCB56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E4844223A6F0B009BCB56 /* AppDelegate.swift */; };
 		499E484A223A6F0B009BCB56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499E4848223A6F0B009BCB56 /* Main.storyboard */; };
 		499E484C223A6F0D009BCB56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 499E484B223A6F0D009BCB56 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		495F922722428D8D0015C858 /* ShowEateryAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEateryAlert.swift; sourceTree = "<group>"; };
 		495F9229224393A80015C858 /* EateryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EateryDetailViewController.swift; sourceTree = "<group>"; };
 		496067C12243DCD800E02FCE /* EateryDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EateryDetailViewCell.swift; sourceTree = "<group>"; };
+		4960C6E922451CE20067B5BB /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		499E4841223A6F0B009BCB56 /* Eateries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eateries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499E4844223A6F0B009BCB56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499E4849223A6F0B009BCB56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				499E4856223B8BF2009BCB56 /* EateriesTableViewController.swift */,
 				495F9229224393A80015C858 /* EateryDetailViewController.swift */,
+				4960C6E922451CE20067B5BB /* RateViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				495F9225224255AA0015C858 /* DependsFactory.swift in Sources */,
 				495F922822428D8D0015C858 /* ShowEateryAlert.swift in Sources */,
 				49DAC7132244E5AF00A32376 /* NavigationBarConfig.swift in Sources */,
+				4960C6EA22451CE20067B5BB /* RateViewController.swift in Sources */,
 				499E4845223A6F0B009BCB56 /* AppDelegate.swift in Sources */,
 				499E4857223B8BF2009BCB56 /* EateriesTableViewController.swift in Sources */,
 				499E4859223B8EFD009BCB56 /* EateriesTableViewCell.swift in Sources */,
