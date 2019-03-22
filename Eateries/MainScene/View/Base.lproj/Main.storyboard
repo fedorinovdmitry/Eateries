@@ -96,21 +96,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="INr-1o-m7z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tl3-82-8Ll">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                            </imageView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <imageView key="tableHeaderView" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ERf-BB-lnc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="305"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eateryDetailCellID" rowHeight="38" id="wi9-Uo-KaE" customClass="EateryDetailViewCell" customModule="Eateries" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="333" width="375" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wi9-Uo-KaE" id="LOU-h1-NNr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="37.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="RDD-0b-d23">
+                                                    <rect key="frame" x="10" y="7.5" width="350" height="23"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Key" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xq0-xf-hfs">
+                                                            <rect key="frame" x="0.0" y="0.0" width="152.5" height="23"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Value" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fq-GA-ZJZ">
+                                                            <rect key="frame" x="197.5" y="0.0" width="152.5" height="23"/>
+                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RDD-0b-d23" firstAttribute="leading" secondItem="LOU-h1-NNr" secondAttribute="leading" constant="10" id="1f7-mV-QAk"/>
+                                                <constraint firstAttribute="trailing" secondItem="RDD-0b-d23" secondAttribute="trailing" constant="15" id="BHd-bC-Y2r"/>
+                                                <constraint firstItem="RDD-0b-d23" firstAttribute="centerY" secondItem="LOU-h1-NNr" secondAttribute="centerY" id="Sun-Py-OrM"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="keyLabel" destination="xq0-xf-hfs" id="sPO-Ey-Smt"/>
+                                            <outlet property="valueLabel" destination="5fq-GA-ZJZ" id="Ssy-6d-IRC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="u3Y-LN-7mR" id="uQL-jD-yV6"/>
+                                    <outlet property="delegate" destination="u3Y-LN-7mR" id="XKe-sz-znt"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="acd-Ld-Qxk" firstAttribute="bottom" secondItem="INr-1o-m7z" secondAttribute="bottom" id="0fX-RK-CKR"/>
-                            <constraint firstItem="INr-1o-m7z" firstAttribute="top" secondItem="acd-Ld-Qxk" secondAttribute="top" id="KSK-LJ-qLb"/>
-                            <constraint firstItem="acd-Ld-Qxk" firstAttribute="trailing" secondItem="INr-1o-m7z" secondAttribute="trailing" id="pBg-AK-T87"/>
-                            <constraint firstItem="INr-1o-m7z" firstAttribute="leading" secondItem="acd-Ld-Qxk" secondAttribute="leading" id="u1a-Ia-qS3"/>
+                            <constraint firstItem="acd-Ld-Qxk" firstAttribute="trailing" secondItem="Tl3-82-8Ll" secondAttribute="trailing" id="IJI-J5-psm"/>
+                            <constraint firstItem="acd-Ld-Qxk" firstAttribute="bottom" secondItem="Tl3-82-8Ll" secondAttribute="bottom" id="nRl-MM-km4"/>
+                            <constraint firstItem="Tl3-82-8Ll" firstAttribute="top" secondItem="acd-Ld-Qxk" secondAttribute="top" id="rVL-6V-4Kg"/>
+                            <constraint firstItem="Tl3-82-8Ll" firstAttribute="leading" secondItem="acd-Ld-Qxk" secondAttribute="leading" id="rZ7-nV-oQs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="acd-Ld-Qxk"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="INr-1o-m7z" id="FbK-HJ-AZ3"/>
+                        <outlet property="imageView" destination="ERf-BB-lnc" id="HVk-7d-BcS"/>
+                        <outlet property="tabbleView" destination="Tl3-82-8Ll" id="TQb-uT-gIm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xg8-bv-1gL" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EateriesTableViewController: UITableViewController {
+class EateriesTableViewController: UITableViewController, UIGestureRecognizerDelegate {
 
     // MARK: - Custom types
     
@@ -31,12 +31,16 @@ class EateriesTableViewController: UITableViewController {
     
     // MARK: - LifeStyle ViewController
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // чтобы контент из таблицы не накладывался на статус бар
-        (UIApplication.shared.value(forKey: "statusBar") as? UIView)?.backgroundColor = view.backgroundColor
+    override func viewWillAppear(_ animated: Bool) {
+        // убираем навигешен бар при свайпе
+        navigationController?.hidesBarsOnSwipe = true
+        
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+    }
     // MARK: - IBAction
     
     // MARK: - Public methods
@@ -52,6 +56,7 @@ class EateriesTableViewController: UITableViewController {
         cell.accessoryType = self.eateriesArr[indexPathRow].isVisited ? .checkmark : .none
         cell.locationLabel.text = self.eateriesArr[indexPathRow].location.rawValue
         cell.typeLable.text = self.eateriesArr[indexPathRow].type.rawValue
+        
         return cell
     }
     
@@ -90,7 +95,6 @@ class EateriesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         workWithUIAlertControllers.showEateryCellAlert(index: indexPath.row)
         // убирает выбор ячейки, подсветку неприятную
         tableView.deselectRow(at: indexPath, animated: true)

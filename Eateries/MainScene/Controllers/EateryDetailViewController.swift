@@ -17,6 +17,7 @@ class EateryDetailViewController: UIViewController {
     // MARK: - Outlets
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var tabbleView: UITableView!
     
     // MARK: - Public Properties
     
@@ -28,10 +29,14 @@ class EateryDetailViewController: UIViewController {
     
     // MARK: - LifeStyle ViewController
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.hidesBarsOnSwipe = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configImageView()
+        configUI()
         
     }
     
@@ -41,11 +46,57 @@ class EateryDetailViewController: UIViewController {
     
     // MARK: - Private methods
     
-    private func configImageView() {
+    private func configUI() {
         guard let eatery = eatery else { return }
+        
         imageView.image = UIImage(named: eatery.imageName)
+        
+        // это все что идет после ячеек
+        tabbleView.tableFooterView = UIView(frame: CGRect.zero)
+        title = eatery.name
     }
     
+    private func configCell(cell: EateryDetailViewCell, index: Int) -> EateryDetailViewCell {
+        guard let eatery = eatery else { return cell }
+        
+        switch index {
+        case 0:
+            cell.keyLabel.text = "Название:"
+            cell.valueLabel.text = eatery.name
+        case 1:
+            cell.keyLabel.text = "Тип:"
+            cell.valueLabel.text = eatery.type.rawValue
+        case 2:
+            cell.keyLabel.text = "Адрес:"
+            cell.valueLabel.text = eatery.location.rawValue
+        case 3:
+            cell.keyLabel.text = "Я там уже был?:"
+            cell.valueLabel.text = eatery.isVisited ? "Да" : "Нет"
+        default:
+            break
+        }
+        cell.backgroundColor = UIColor.clear
+        return cell
+    }
     // MARK: - Navigation
 
+}
+
+extension EateryDetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: EateryDetailViewCell.identifier,
+                                                 for: indexPath) as! EateryDetailViewCell // swiftlint:disable:this force_cast
+        
+        return configCell(cell: cell, index: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }
