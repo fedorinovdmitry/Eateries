@@ -18,6 +18,7 @@ class EateryDetailViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tabbleView: UITableView!
+    @IBOutlet weak var rateButton: UIButton!
     
     // MARK: - Public Properties
     
@@ -53,7 +54,14 @@ class EateryDetailViewController: UIViewController {
         
         // это все что идет после ячеек
         tabbleView.tableFooterView = UIView(frame: CGRect.zero)
+        tabbleView.estimatedRowHeight = 40
+        tabbleView.rowHeight = UITableView.automaticDimension
         title = eatery.name
+        
+        rateButton.layer.cornerRadius = rateButton.frame.width / 2
+        rateButton.layer.borderWidth = 1
+        rateButton.layer.borderColor = UIColor.white.cgColor
+        
     }
     
     private func configCell(cell: EateryDetailViewCell, index: Int) -> EateryDetailViewCell {
@@ -68,7 +76,7 @@ class EateryDetailViewController: UIViewController {
             cell.valueLabel.text = eatery.type.rawValue
         case 2:
             cell.keyLabel.text = "Адрес:"
-            cell.valueLabel.text = eatery.location.rawValue
+            cell.valueLabel.text = eatery.location
         case 3:
             cell.keyLabel.text = "Я там уже был?:"
             cell.valueLabel.text = eatery.isVisited ? "Да" : "Нет"
@@ -80,6 +88,9 @@ class EateryDetailViewController: UIViewController {
     }
     // MARK: - Navigation
 
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {
+        
+    }
 }
 
 extension EateryDetailViewController: UITableViewDelegate, UITableViewDataSource {

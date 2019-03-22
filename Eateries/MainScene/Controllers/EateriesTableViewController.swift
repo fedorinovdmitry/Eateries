@@ -40,6 +40,9 @@ class EateriesTableViewController: UITableViewController, UIGestureRecognizerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        // установка для того чтобы ячейки могли расширятся по своему контенту 
+        tableView.estimatedRowHeight = 85
+        tableView.rowHeight = UITableView.automaticDimension
     }
     // MARK: - IBAction
     
@@ -54,7 +57,7 @@ class EateriesTableViewController: UITableViewController, UIGestureRecognizerDel
         cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.width / 2
         cell.thumbnailImageView.clipsToBounds = true //позволяет обрезать изображение
         cell.accessoryType = self.eateriesArr[indexPathRow].isVisited ? .checkmark : .none
-        cell.locationLabel.text = self.eateriesArr[indexPathRow].location.rawValue
+        cell.locationLabel.text = self.eateriesArr[indexPathRow].location
         cell.typeLable.text = self.eateriesArr[indexPathRow].type.rawValue
         
         return cell
